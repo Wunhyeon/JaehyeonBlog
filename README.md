@@ -23,3 +23,8 @@ src/utils/supabase/middleware.ts
 src/utils/supabase/server.ts
 src/app/auth/callback/route.ts
 ```
+
+Google Login (OAuth Login)은 이 동영상 참조하면 좋다.
+https://www.youtube.com/watch?v=7aYgxQ6QAjs
+
+[공식문서](https://supabase.com/docs/guides/auth/auth-deep-dive/auth-google-oauth)는 이건데, 봐도 잘 모르겠음. 위 동영상이 더 좋다.
