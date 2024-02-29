@@ -173,3 +173,17 @@ export const insertWordAndIdea = async (
 ```
 
 이런식으로 사용해주면 된다.
+
+## Typescript Type Generate 하기
+
+https://supabase.com/docs/guides/api/rest/generating-types
+
+예시
+
+```
+npx supabase gen types typescript --project-id "csvpukdbqwziozqghoid" --schema public > src/lib/types/supabase.ts
+```
+
+(먼저 lib/types 등의 디렉토리를 만들어줘야 한다.)
+
+여기서 project-id는 supabase dashboard -> project -> Project Settings(톱니바퀴)에 있는 Reference ID이다.
