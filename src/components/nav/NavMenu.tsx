@@ -37,6 +37,10 @@ const NavMenu = () => {
             뉴스
             <MenubarShortcut>📰</MenubarShortcut>
           </MenubarItem>
+          <MenubarItem>
+            게시판
+            <MenubarShortcut>📝</MenubarShortcut>
+          </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>

@@ -16,10 +16,11 @@ import { useUser } from "@/lib/store/user";
 import { ToggleDarkMode } from "../ToggleDarkmode";
 import Link from "next/link";
 import LoginForm from "./LoginForm";
+import Profile from "./Profile";
 
 const Navbar = () => {
   const user = useUser((state) => state.user);
-  console.log("navBar - user : ", user);
+  console.log("user : ", user?.user_metadata);
 
   return (
     <nav className="py-4 border-b-2 border-gray-500 min-h-6">
@@ -34,7 +35,7 @@ const Navbar = () => {
           <ToggleDarkMode />
           <div>
             {user ? (
-              <div>로그인한 유저</div>
+              <Profile user={user} />
             ) : (
               // <div>로그인 하라는 구글표시</div>
               <LoginForm />
