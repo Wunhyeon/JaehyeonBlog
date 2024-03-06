@@ -181,9 +181,58 @@ https://supabase.com/docs/guides/api/rest/generating-types
 예시
 
 ```
-npx supabase gen types typescript --project-id "csvpukdbqwziozqghoid" --schema public > src/lib/types/supabase.ts
+npx supabase gen types typescript --project-id "csvpuk124bqwziozqghoid" --schema public > src/lib/types/supabase.ts
 ```
 
 (먼저 lib/types 등의 디렉토리를 만들어줘야 한다.)
 
 여기서 project-id는 supabase dashboard -> project -> Project Settings(톱니바퀴)에 있는 Reference ID이다.
+그런 뒤에 기존에 만들어져있던 client를 만드는 파일들 (utils/supabase/client.ts, utils/supabase/server.ts, utils/supabase/middleware.ts)에서
+`createBrowserClient(supabase ID)`이렇게 되어있던 부분을 `createBrowserClient<Database>(supabase ID)`이렇게 고쳐주면, 자동완성도 되고 참 좋다.
+
+## Supabase IS NULL 사용
+
+https://supabase.com/docs/reference/javascript/is
+카테고리에 parents id칼럼을 주고, 순차적으로 내려받으려고 했는데, eq함수로는 안되서 찾아보니 is()라는 메서드를 사용해야 했다.
+
+## ZOD의 optional, nullable, nullish에 대해서.
+
+https://gist.github.com/ciiqr/ee19e9ff3bb603f8c42b00f5ad8c551e
+
+```ts
+// zod schema
+z.object({
+    // valid if string or:
+    optional: z.string().optional(), // field not provided, or explicitly `undefined`
+    nullable: z.string().nullable(), // field explicitly `null`
+    nullish: z.string().nullish(), // field not provided, explicitly `null`, or explicitly `undefined`
+});
+
+// type
+{
+    optional?: string | undefined;
+    nullable: string | null;
+    nullish?: string | null | undefined;
+}
+```
+
+## ShadCN - Form - Select
+
+```tsx
+<Select onValueChange={field.onChange} value={field.value}>
+```
+
+https://github.com/shadcn-ui/ui/issues/549#issuecomment-1656482636
+
+## 카테고리.
+
+자식이 있는 카테고리를 선택하면, 그 옆으로 바로 자식들이 있는 셀렉트 박스가 생기고, 여기서 또 자식있는 거 선택하면 옆에 셀렉트박스 생기고. 없으면 안생기고. 선택 안하면 선택한거까지만 select하고.
+도움 될만한 거 : https://github.com/JedWatson/react-select/issues/4229
+
+cascading drop down select
+https://www.youtube.com/watch?v=-S6zEpqnhSI
+
+재귀를 이용한 카테고리 분류
+https://stackoverflow.com/questions/55122059/how-to-dynamically-generate-dropdown-from-nested-array-in-reactjs
+https://codesandbox.io/p/sandbox/rln82loyj4?file=%2Fsrc%2Findex.js%3A23%2C27&fontsize=14
+https://hackids.tistory.com/135
