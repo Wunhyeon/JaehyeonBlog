@@ -236,3 +236,6 @@ https://www.youtube.com/watch?v=-S6zEpqnhSI
 https://stackoverflow.com/questions/55122059/how-to-dynamically-generate-dropdown-from-nested-array-in-reactjs
 https://codesandbox.io/p/sandbox/rln82loyj4?file=%2Fsrc%2Findex.js%3A23%2C27&fontsize=14
 https://hackids.tistory.com/135
+
+Select만드는 데 도움이 될지는 모르겠지만..
+https://dev.to/keyurparalkar/recursive-elements-in-react-3jp1
