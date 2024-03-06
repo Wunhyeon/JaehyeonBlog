@@ -40,6 +40,12 @@ const CreateContentForm = ({ category }: { category: category }) => {
   const form = useForm<z.infer<typeof CreateContentFormSchema>>({
     mode: "all",
     resolver: zodResolver(CreateContentFormSchema),
+    defaultValues: {
+      title: "",
+      content: "",
+      contentCategoryId: "",
+      mainImg: "",
+    },
   });
 
   const onSubmit = (data: z.infer<typeof CreateContentFormSchema>) => {
