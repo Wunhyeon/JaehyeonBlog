@@ -266,3 +266,8 @@ $$ LANGUAGE plpgsql;
 
 get_child_categories_depth2 라는, depth 2까지만 카테고리 데이터를 가져오는 function을 등록해줬다.
 (sql editor에서 직접 등록해줬다.)
+
+// github 확인.
+// http 방식에서 ssh 방식으로 바꿨는데, (ssh키도 새로 만들어줌.)
+// 그 뒤로 잔디가 안심긴다. 그래서 git config --global user.email "xhwogusxh@gmail.com"
+// 를 통해 전체 깃에 유저 이메일을 등록해줬다. 이러면 되려나? 테스트
