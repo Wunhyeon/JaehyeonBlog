@@ -26,8 +26,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { category } from "@/lib/types";
+import { cn } from "@/lib/utils";
+import MarkdownPreview from "@/components/markdown/MarkdownPreview";
 
 const CreateContentForm = ({ category }: { category: category }) => {
+  const [isPreview, setIsPreview] = useState<boolean>(false);
+
   // select의 수
   const [selectCount, setSelectCount] = useState<number>(0);
 
@@ -134,6 +138,41 @@ const CreateContentForm = ({ category }: { category: category }) => {
             <FormItem>
               <FormControl>
                 <Input placeholder="title" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="content"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <div
+                  className={cn(
+                    "p-2 w-full flex break-words gap-2",
+                    isPreview ? "divide-x-0" : "divide-x h-70vh"
+                  )}
+                >
+                  <textarea
+                    placeholder="content..."
+                    {...field}
+                    className={cn(
+                      "border-none outline-purple-600 text-lg font-medium leading-relaxed resize-none",
+                      isPreview ? "w-0 p-0" : "w-full lg:w-1/2"
+                    )}
+                  />
+                  <div
+                    className={cn(
+                      "overflow-y-auto",
+                      isPreview
+                        ? "mx-auto w-full lg:w-4/5"
+                        : "w-1/2 lg:block hidden"
+                    )}
+                  >
+                    <MarkdownPreview content={form.getValues().content} />
+                  </div>
+                </div>
               </FormControl>
             </FormItem>
           )}

@@ -239,3 +239,30 @@ https://hackids.tistory.com/135
 
 Select만드는 데 도움이 될지는 모르겠지만..
 https://dev.to/keyurparalkar/recursive-elements-in-react-3jp1
+
+```sql
+CREATE OR REPLACE FUNCTION get_child_categories_depth2()
+RETURNS TABLE(id integer, name text, parents_id integer, depth integer) AS $$
+BEGIN
+    RETURN QUERY
+    WITH RECURSIVE child_categories AS (
+        -- 시작 조건: 부모가 null인 카테고리를 선택
+        SELECT id, name, parents_id, 1 AS depth
+        FROM content_category
+        WHERE parents_id IS NULL
+
+        UNION ALL
+
+        -- 재귀적으로 자식 데이터를 선택 (depth가 2 이하인 경우에만)
+        SELECT cc.id, cc.name, cc.parents_id, pc.depth + 1 AS depth
+        FROM content_category cc
+        INNER JOIN child_categories pc ON cc.parents_id = pc.id
+        WHERE pc.depth < 2
+    )
+    SELECT * FROM child_categories;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+get_child_categories_depth2 라는, depth 2까지만 카테고리 데이터를 가져오는 function을 등록해줬다.
+(sql editor에서 직접 등록해줬다.)
